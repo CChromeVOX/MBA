@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<h1>{{title}}</h1>
+
+
+
+<ul>
+    {% for t in types %}
+    <li>
+        <h3>{{t.type}}</h3>
+        <hr>
+
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
