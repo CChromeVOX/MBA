@@ -119,8 +119,50 @@ html {
 .footer_container h5 {
     font-size: 14px;
 }
+
 .footer_container p {
     font-size: 11px;
     line-height: 19px;
     color: #7C9397;
+}
+
+/*  */
+table {
+margin-top: 50px;
+}
+
+th {
+    text-align: left;
+    color: #fff;
+    background-color: #004282;
+}
+
+td {
+    min-width: 200px;
+    color: #696969;
+    border-bottom: 1px solid #eee;
+}
+
+th, td {
+    padding: 10px;
+    height: 20px;
+}
+
+td:first-child {
+    width: 150px;
+    min-width: 0;
+}
+
+th:last-child {
+    text-align: right;
+}
+
+td:last-child {
+    width: 80px;
+    min-width: 0;
+    text-align: right;
+}
+
+tr:nth-child(odd) {
+    background-color: #eee;
 }
