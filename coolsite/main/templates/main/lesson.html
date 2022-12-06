@@ -1,0 +1,34 @@
+{% extends 'main/base.html' %}
+{% block content%}
+
+<h1>Занятия</h1>
+<h6>  </h6>
+
+<table class="table table-striped">
+    <tr>
+        <th>Заголовок</th>
+        <th>Город</th>
+        <th>Дисциплина</th>
+        <th>Количество слушателей</th>
+        <th>Дата начала</th>
+        <th>Дата окончания</th>
+        <th>Группа</th>
+    </tr>
+
+    {% for row in data %}
+
+    <tr>
+        <td>{{row.title}}</td>
+        <td>{{row.city}}</td>
+        <td>{{row.discipline}}</td>
+        <td>{{row.listeners_count}}</td>
+        <td>{{row.start_date}}</td>
+        <td>{{row.end_date}}</td>
+        <td>{{row.group}}</td>
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+{% endblock %}
