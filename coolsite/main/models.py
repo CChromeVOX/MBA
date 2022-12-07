@@ -12,7 +12,7 @@ class City(models.Model):
     name = models.CharField(max_length=255)
     about = models.TextField(blank=True)
     def __str__(self): 
-       return f"{self.name} | {self.about}"
+       return f"{self.name}"
 
 class Teacher(models.Model):
     name = models.CharField(max_length=255)
@@ -40,8 +40,6 @@ class StudentType(models.Model):
 class Student(AbstractUser):
     type = models.ForeignKey(StudentType, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=255)
-    login = models.CharField(max_length=255)
-    password = models.CharField(max_length=255)
     number = models.IntegerField(null=True)
     email = models.EmailField(max_length=255)
     def __str__(self): 
@@ -78,7 +76,7 @@ class Request(models.Model):
     status = models.ForeignKey(RequestStatus, on_delete=models.CASCADE)
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
     def __str__(self): 
-       return f"{self.student} | {self.status} "
+       return f"{self.student.username} | {self.status} "
 
 class LessonListeners(models.Model):
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)

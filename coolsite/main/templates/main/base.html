@@ -32,8 +32,11 @@
         <ul>
             <li><a href="{% url 'main-index' %}">Главная</a></li>
             <li><a href="{% url 'main-about' %}">О Нас</a></li>
-            <li><a href="#">Профиль</a></li>
-            <li><a href="#">Мои Занятия</a></li>
+            {% if user.is_authenticated %} 
+            <li><a href="{% url 'main-addrequest' %}">Добавить заявку</a></li>
+            <li><a href="{% url 'main-mylessons' %}">Мои Занятия</a></li>
+            <li><a href="{% url 'main-requests' %}">Заявки</a></li>
+            {% endif %}
             <li><a href="#">Курсы</a></li>
             <li><a href="{% url 'main-lesson' %}">Занятия</a></li>
 

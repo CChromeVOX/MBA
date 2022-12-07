@@ -1,7 +1,7 @@
 {% extends 'main/base.html' %}
 {% block content%}
 
-<h1>Занятия</h1>
+<h1>Мои Занятия</h1>
 <h6>  </h6>
 
 <table class="table table-striped">
@@ -16,6 +16,7 @@
     </tr>
 
     {% for row in data %}
+    {% if user.username == row.student %}
     
 
     <tr>
@@ -27,6 +28,7 @@
         <td>{{row.group}}</td>
         <td>{{row.teacher}}</td>
     </tr>
+    {% endif %}
 
     {% endfor %}
 

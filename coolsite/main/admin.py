@@ -1,5 +1,11 @@
 from django.contrib import admin
 from main.models import *
+from django.contrib.auth.admin import UserAdmin
+
+class StudentAdmin(UserAdmin):
+    pass
+
+admin.site.register(Student, StudentAdmin)
 
 class GroupInline(admin.StackedInline):
     model = GroupMember
@@ -9,7 +15,6 @@ class GroupAdmin(admin.ModelAdmin):
     inlines = [GroupInline]
     list_display = ["title"]
 
-admin.site.register(Student)
 
 admin.site.register(Group, GroupAdmin)
 

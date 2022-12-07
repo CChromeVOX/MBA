@@ -1,6 +1,7 @@
-from django.contrib import messages
+
 from django.shortcuts import render, redirect
 from .models import *
+from .forms import *
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 
@@ -15,32 +16,21 @@ def index(request):
 def about(request):
     return render(request, 'main/about.html', {'menu': menu, 'title': 'О Нас'})
 
-def custom_login(request):
-    if request.user.is_authenticated:
-        return redirect('main-about')
-    if request.method == 'POST':
-        form = AuthenticationForm(request=request, data=request.POST)
-        if form.is_valid():
-            user = authenticate(
-                username=form.cleaned_data['username'],
-                password=form.cleaned_data['password'],
-            )
-            if user is not None:
-                login(request, user)
-                messages.success(request, f"Здравствуйте, <b>{user.username}</b>! Вы успешно вошли в аккаунт")
-                return redirect('main-about')
-
-        else:
-            for error in list(form.errors.values()):
-                messages.error(request, error) 
-
-    form = AuthenticationForm() 
-    
-    return render(
-        request=request,
-        template_name="main/login.html", 
-        context={'form': form}
-        )
+def login_v(request): 
+    if request.method == 'POST': 
+        form = AuthenticationForm(data=request.POST) 
+        if form.is_valid(): 
+            username = form.cleaned_data.get('username') 
+            password = form.cleaned_data.get('password') 
+            user = authenticate(request, username=username, password=password) 
+            if user is not None: 
+                login(request, user) 
+                return redirect('main-about') 
+            else: 
+                print(request, "Why is this not returned for inval")       
+    else: 
+        form = AuthenticationForm() 
+    return render(request, 'main/login.html', {'form': form, 'menu': menu, 'title': 'Вход на сайт'})
 
 def logout_view(request):
     logout(request)
@@ -56,7 +46,26 @@ def lesson(request):
         'error': error,
     }
     return render(request, 'main/lesson.html', context)
-
+def mylesson(request):
+    error = 'No db'
+    data = Lesson.objects.all()
+    context = {
+        'title':'Список текущих занятии',
+        'header': 'Занятия',
+        'data': data,
+        'error': error,
+    }
+    return render(request, 'main/mylessons.html', context)
+def requests(request):
+    error = 'No db'
+    data = Request.objects.all()
+    context = {
+        'title':'Список заявок',
+        'header': 'Мои заявки',
+        'data': data,
+        'error': error,
+    }
+    return render(request, 'main/requests.html', context)
 
 def lessons(request, lessid):
     print(request.GET)
@@ -89,3 +98,16 @@ def index(request):
 
 def about(request):
     return render(request, 'main/about.html', {'title': 'О Нас'})
+
+def select_view(request):
+    form = RequestForm(request.POST)
+    if request.POST:
+        if form.is_valid():
+            req = form.save(commit=False)
+            req.student = request.user
+            req.status = RequestStatus.objects.get(type="Отправлено")
+            req.save()
+        return redirect('main-about')
+
+
+    return render(request, 'main/addrequest.html', {'form': form})
