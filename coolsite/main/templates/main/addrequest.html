@@ -1,11 +1,14 @@
 {% extends 'main/base.html' %} 
 {% block content %} 
-<h1>Подать заявку</h1>
-<h6>  </h6>
+<h3>Подать заявку</h3>
 <form method="POST" action="{% url 'main-addrequest' %}" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form }}
-    <button>Подать заявку</button>
+    <br>
+    Выберите занятие: {{ form.lesson }}
+    <br>
+    Комментарии: {{ form.comment }}
+    <br>
+    <button type="submit" class="btn btn-success">Подать заявку</button>
 </form>
 
 

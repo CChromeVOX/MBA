@@ -16,9 +16,7 @@
     </tr>
 
     {% for row in data %}
-    {% if user.username == row.student %}
     
-
     <tr>
         <td>{{row.discipline}}</td>
         <td>{{row.city}}</td>
@@ -28,7 +26,7 @@
         <td>{{row.group}}</td>
         <td>{{row.teacher}}</td>
     </tr>
-    {% endif %}
+
 
     {% endfor %}
 

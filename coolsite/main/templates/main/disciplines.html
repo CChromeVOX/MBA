@@ -1,0 +1,25 @@
+{% extends 'main/base.html' %}
+{% block content%}
+
+<h1>Дисциплины</h1>
+<h6>  </h6>
+
+<table class="table table-striped">
+    <tr>
+        <th>Дисциплина</th>
+        <th>Информация о дисциплине</th>
+    </tr>
+
+    {% for row in data %}
+
+
+    <tr>
+        <td>{{row.title}}</td>
+        <td>{{row.about}}</td>
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+{% endblock %}

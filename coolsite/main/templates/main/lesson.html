@@ -8,11 +8,11 @@
     <tr>
         <th>Дисциплина</th>
         <th>Город</th>
-        <th>Количество слушателей</th>
         <th>Дата начала</th>
         <th>Дата окончания</th>
         <th>Группа</th>
         <th>Тренер</th>
+        <th>Количество слушателей</th>
     </tr>
 
     {% for row in data %}
@@ -21,11 +21,11 @@
     <tr>
         <td>{{row.discipline}}</td>
         <td>{{row.city}}</td>
-        <td>{{row.listeners_count}}</td>
         <td>{{row.start_date}}</td>
         <td>{{row.end_date}}</td>
         <td>{{row.group}}</td>
         <td>{{row.teacher}}</td>
+        <td>{{row.listeners_count}}</td>
     </tr>
 
     {% endfor %}

@@ -3,6 +3,9 @@ from main.models import *
 from django.contrib.auth.admin import UserAdmin
 
 class StudentAdmin(UserAdmin):
+    list_display = (
+        'username', 'email', 'first_name', 'last_name', 'is_staff', 'type'
+        )
     pass
 
 admin.site.register(Student, StudentAdmin)
