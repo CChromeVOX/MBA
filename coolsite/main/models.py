@@ -48,14 +48,6 @@ class RequestStatus(models.Model):
         verbose_name = 'Статус заявки'
         verbose_name_plural = 'Статусы заявок'
 
-class ListenerStatus(models.Model):
-    type = models.CharField('Наименование статуса', max_length=255)
-    def __str__(self):
-       return f"{self.type}"
-    class Meta:
-        verbose_name = 'Статус слушателя'
-        verbose_name_plural = 'Статусы слушателей'
-
 class StudentType(models.Model):
     type = models.CharField('Наименование вида', max_length=255)
     def __str__(self):
@@ -103,7 +95,6 @@ class Lesson(models.Model):
     end_date = models.DateField('Дата окончания',)
     start_time = models.TimeField('Время начала',)
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
-    free_places = models.IntegerField('Количество свободных мест', max_length=10)
     def __str__(self): 
        return f"{self.discipline} - {self.city} - {self.start_date} "
     class Meta:
@@ -124,7 +115,6 @@ class Request(models.Model):
 class LessonListeners(models.Model):
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    status = models.ForeignKey(ListenerStatus, on_delete=models.CASCADE)
     def __str__(self): 
        return f"{self.lesson} - {self.student}"
     class Meta:
